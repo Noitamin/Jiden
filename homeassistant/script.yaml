@@ -1,0 +1,116 @@
+
+#********************************
+#            LIGHT1             #
+#********************************
+light1_on:
+  alias: 'Turn Light ON'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED1_on
+    - condition: state 
+      entity_id: switch.LED1_on
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED1_on
+
+light1_off:
+  alias: 'Turn Light OFF'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED1_off
+    - condition: state 
+      entity_id: switch.LED1_off
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED1_off
+
+#********************************
+#            LIGHT2             #
+#********************************
+light2_on:
+  alias: 'Turn Light ON'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED2_on
+    - condition: state 
+      entity_id: switch.LED2_on
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED2_on
+
+light2_off:
+  alias: 'Turn Light OFF'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED2_off
+    - condition: state 
+      entity_id: switch.LED2_off
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED2_off
+
+#********************************
+#            LIGHT3             #
+#********************************
+light3_on:
+  alias: 'Turn Light ON'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED3_on
+    - condition: state 
+      entity_id: switch.LED3_on
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED3_on
+
+light3_off:
+  alias: 'Turn Light OFF'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED3_off
+    - condition: state 
+      entity_id: switch.LED3_off
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED3_off
+
+#********************************
+#            LIGHT3             #
+#********************************
+light4_on:
+  alias: 'Turn Light ON'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED4_on
+    - condition: state 
+      entity_id: switch.LED4_on
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED4_on
+
+light4_off:
+  alias: 'Turn Light OFF'
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.LED4_off
+    - condition: state 
+      entity_id: switch.LED4_off
+      state: 'on'
+    - delay:
+        milliseconds: 500
+    - service: switch.turn_off
+      entity_id: switch.LED4_off

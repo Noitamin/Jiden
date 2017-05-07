@@ -1,0 +1,281 @@
+homeassistant:
+  customize: 
+    sensor.set_time:
+      icon: mdi:calendar-clock
+    script.light1_on:
+      icon: mdi:lightbulb-on-outline
+    script.light1_off:
+      icon: mdi:lightbulb-outline
+    script.light2_on:
+      icon: mdi:lightbulb-on-outline
+    script.light2_off:
+      icon: mdi:lightbulb-outline
+    script.light3_on:
+      icon: mdi:lightbulb-on-outline
+    script.light3_off:
+      icon: mdi:lightbulb-outline
+    script.light4_on:
+      icon: mdi:lightbulb-on-outline
+    script.light4_off:
+      icon: mdi:lightbulb-outline
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 33.7886
+  longitude: -117.9306
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 32
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Los_Angeles
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+
+#group: !include groups.yaml
+
+#Raspberry GPIO 21 test
+switch:
+  control: hidden
+  platform: rpi_gpio
+  ports:
+    6: LED2_off
+    12: LED2_on
+    13: LED3_off
+    16: LED3_on
+    19: LED4_off
+    20: LED4_on
+    26: LED1_off
+    21: LED1_on
+
+#********************************
+#           SCRIPTS             #
+#********************************
+script: !include script.yaml
+
+
+#********************************
+#            INPUTS             #
+#********************************
+# Automation time sliders
+input_slider:
+  hour_slider1:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  min_slider1:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+  hour_slider2:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  min_slider2:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+  hour_slider3:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  min_slider3:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+  hour_slider4:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  min_slider4:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+
+input_boolean:
+  autodev1:
+    name: Enable automation
+    initial: off
+    icon: mdi:clock 
+  autodev2:
+    name: Enable automation
+    initial: off
+    icon: mdi:clock 
+  autodev3:
+    name: Enable automation
+    initial: off
+    icon: mdi:clock 
+  autodev4:
+    name: Enable automation
+    initial: off
+    icon: mdi:clock 
+
+# Light automation clock display
+sensor:
+  - platform: template
+    sensors:
+      set_time1:
+        friendly_name: 'Time'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider1") | int, states("input_slider.min_slider1") | int) }}' 
+      set_time2:
+        friendly_name: 'Time'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider2") | int, states("input_slider.min_slider2") | int) }}' 
+      set_time3:
+        friendly_name: 'Time'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider3") | int, states("input_slider.min_slider3") | int) }}' 
+      set_time4:
+        friendly_name: 'Time'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider4") | int, states("input_slider.min_slider4") | int) }}' 
+        #value_template: '{{ "%0.02d" | format(int, states("input_slider.min_slider") | int) }}' 
+        #value_template: '46'
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+#********************************
+#           GROUPS              #
+#********************************
+# Light automation group
+group:
+  default_view:    
+    view: yes
+    entities:
+      - group.date_time_clock
+      #- group.autodev1
+      #- group.autodev2
+      #- group.autodev3
+      #- group.autodev4
+      - group.light_tab
+      - sun.sun
+
+  date_time_clock:
+    name: 'Current Date & Time'
+    entities:
+      - sensor.date
+      - sensor.time
+
+  gpio_switches:
+    view: no
+    name: Hidden GPIO
+    entities:
+      - switch.LED2_off
+      - switch.LED2_on
+      - switch.LED3_off
+      - switch.LED3_on
+      - switch.LED4_off
+      - switch.LED4_on
+      - switch.LED1_off
+      - switch.LED1_on
+
+  autodev1:
+    control: hidden
+    name: Light Automation
+    entities:
+      - sensor.set_time1
+      - input_slider.hour_slider1
+      - input_slider.min_slider1
+      - input_boolean.autodev1
+      - script.light1_on
+      - script.light1_off
+
+  autodev2:
+    control: hidden
+    name: Light Automation
+    entities:
+      - sensor.set_time2
+      - input_slider.hour_slider2
+      - input_slider.min_slider2
+      - input_boolean.autodev2
+      - script.light2_on
+      - script.light2_off
+
+  autodev3:
+    control: hidden
+    name: Light Automation
+    entities:
+      - sensor.set_time3
+      - input_slider.hour_slider3
+      - input_slider.min_slider3
+      - input_boolean.autodev3
+      - script.light3_on
+      - script.light3_off
+
+  autodev4:
+    control: hidden
+    name: Light Automation
+    entities:
+      - sensor.set_time4
+      - input_slider.hour_slider4
+      - input_slider.min_slider4
+      - input_boolean.autodev4
+      - script.light4_on
+      - script.light4_off
+
+  light_tab:
+    view: yes
+    name: Lighting
+    entities:
+     - group.date_time_clock
+     - group.autodev1
+     - group.autodev2
+     - group.autodev3
+     - group.autodev4
+
+#********************************
+#         AUTOMATION            #
+#********************************
+automation: !include automation.yaml
+
