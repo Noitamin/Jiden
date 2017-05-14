@@ -1,5 +1,5 @@
 # Jiden Repository
 This repository contains all resources for Jiden project
 Content:
-* Jiden py
-* Jiden Home Assistant
+* Jiden python scripts
+* Jiden Home Assistant configuration and yaml files
