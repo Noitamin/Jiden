@@ -1,0 +1,7 @@
+autodev:
+  entities:
+  - sensor.set_time
+  - input_slider.hour_slider
+  - input_slider.min_slider
+  name: Kitchen
+  view: false

@@ -1,0 +1,9 @@
+switch:
+  - switch.Test1
+  - switch.Test2
+  - switch.Test3
+  - switch.Test4
+  - switch.Test5
+  - switch.Test6
+  - switch.Test7
+  - switch.LED1

@@ -1,0 +1,211 @@
+#********************************
+#       LIGHT AUTOMATION        #
+#********************************
+#automation:
+- alias: 'Turns outlet1 on at specific time'
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: time
+      minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.autodev1
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_on_time1.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.light1_on
+
+- alias: 'Turns off outlet1 at specific time'
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: time
+      minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.autodev1
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_off_time1.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.light1_off
+
+- alias: 'Turns on outlet2 at specific time'
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: time
+      minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.autodev2
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_on_time2.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.light2_on
+
+- alias: 'Turns off outlet2 at specific time'
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: time
+      minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.autodev2
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_off_time2.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.light2_off
+
+- alias: 'Turns on outlet3 at specific time'
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: time
+      minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.autodev3
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_on_time3.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.light3_on
+
+- alias: 'Turns off outlet3 at specific time'
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: time
+      minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.autodev3
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_off_time3.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+  action:
+    service: script.turn_on
+    entity_id: script.light3_off
+
+#- alias: 'Turns on the LED3 at specific time'
+#  initial_state: True
+#  hide_entity: False
+#  trigger:
+#    - platform: time
+#      minutes: '/1'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: input_boolean.autodev3
+#        state: 'on'
+#      - condition: template
+#        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_time3.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+#  action:
+#    service: script.turn_on
+#    entity_id: script.light3_on
+
+#- alias: 'Turns on the LED4 at specific time'
+#  initial_state: True
+#  hide_entity: False
+#  trigger:
+#    - platform: time
+#      minutes: '/1'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: input_boolean.autodev4
+#        state: 'on'
+#      - condition: template
+#        value_template: '{{ now().time().strftime("%H:%M:%S") == states.sensor.set_time4.state }}' 
+  #  - platform: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+  #condition:
+  #  - condition: template
+  #    value_template: '{{ now().time().strftime("%M") == states.sensor.set_time.state }}' 
+    #- condition: time
+    #  after: '00:00:00'
+    #  before: '23:59:59'
+#  action:
+#    service: script.turn_on
+#    entity_id: script.light4_on
