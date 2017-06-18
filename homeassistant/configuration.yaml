@@ -94,89 +94,143 @@ script: !include script.yaml
 #********************************
 # Automation time sliders
 input_slider:
-  hour_slider1:
+  on_hour_slider1:
     name: Hours
     initial: 12
     min: 0
     max: 23
     step: 1
-  min_slider1:
+  on_min_slider1:
     name: Minutes
     initial: 0
     min: 0
     max: 59
     step: 1
-  hour_slider2:
+  off_hour_slider1:
     name: Hours
     initial: 12
     min: 0
     max: 23
     step: 1
-  min_slider2:
-    name: Minutes
-    initial: 0
-    min: 0
-    max: 59
-    step: 1
-  hour_slider3:
-    name: Hours
-    initial: 12
-    min: 0
-    max: 23
-    step: 1
-  min_slider3:
-    name: Minutes
-    initial: 0
-    min: 0
-    max: 59
-    step: 1
-  hour_slider4:
-    name: Hours
-    initial: 12
-    min: 0
-    max: 23
-    step: 1
-  min_slider4:
+  off_min_slider1:
     name: Minutes
     initial: 0
     min: 0
     max: 59
     step: 1
 
+  on_hour_slider2:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  on_min_slider2:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+  off_hour_slider2:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  off_min_slider2:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+
+  on_hour_slider3:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  on_min_slider3:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+  off_hour_slider3:
+    name: Hours
+    initial: 12
+    min: 0
+    max: 23
+    step: 1
+  off_min_slider3:
+    name: Minutes
+    initial: 0
+    min: 0
+    max: 59
+    step: 1
+
+  #hour_slider4:
+  #  name: Hours
+  #  initial: 12
+  #  min: 0
+  #  max: 23
+  #  step: 1
+  #min_slider4:
+  #  name: Minutes
+  #  initial: 0
+  #  min: 0
+  #  max: 59
+  #  step: 1
+
 input_boolean:
   autodev1:
-    name: Enable automation
+    name: Turn on schedule
     initial: off
     icon: mdi:clock 
   autodev2:
-    name: Enable automation
+    name: Turn on schedule
     initial: off
     icon: mdi:clock 
   autodev3:
     name: Enable automation
     initial: off
     icon: mdi:clock 
-  autodev4:
-    name: Enable automation
-    initial: off
-    icon: mdi:clock 
+  #autodev4:
+  #  name: Enable automation
+  #  initial: off
+  #  icon: mdi:clock 
 
 # Light automation clock display
 sensor:
   - platform: template
     sensors:
-      set_time1:
-        friendly_name: 'Time'
-        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider1") | int, states("input_slider.min_slider1") | int) }}' 
-      set_time2:
-        friendly_name: 'Time'
-        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider2") | int, states("input_slider.min_slider2") | int) }}' 
-      set_time3:
-        friendly_name: 'Time'
-        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider3") | int, states("input_slider.min_slider3") | int) }}' 
-      set_time4:
-        friendly_name: 'Time'
-        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider4") | int, states("input_slider.min_slider4") | int) }}' 
+      set_on_time1:
+        friendly_name: 'Turn on at'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.on_hour_slider1") | int, states("input_slider.on_min_slider1") | int) }}' 
+      set_off_time1:
+        friendly_name: 'Turn off at'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.off_hour_slider1") | int, states("input_slider.off_min_slider1") | int) }}' 
+      set_on_time2:
+        friendly_name: 'Turn on at'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.on_hour_slider2") | int, states("input_slider.on_min_slider2") | int) }}' 
+      set_off_time2:
+        friendly_name: 'Turn off at'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.off_hour_slider2") | int, states("input_slider.off_min_slider2") | int) }}' 
+      set_on_time3:
+        friendly_name: 'Turn on at'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.on_hour_slider3") | int, states("input_slider.on_min_slider3") | int) }}' 
+      set_off_time3:
+        friendly_name: 'Turn off at'
+        value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.off_hour_slider3") | int, states("input_slider.off_min_slider3") | int) }}' 
+      #set_time2:
+      #  friendly_name: 'Time'
+      #  value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider2") | int, states("input_slider.min_slider2") | int) }}' 
+      #set_time3:
+      #  friendly_name: 'Time'
+      #  value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider3") | int, states("input_slider.min_slider3") | int) }}' 
+      #set_time4:
+      #  friendly_name: 'Time'
+      #  value_template: '{{ "%0.02d:%0.02d:01" | format(states("input_slider.hour_slider4") | int, states("input_slider.min_slider4") | int) }}' 
         #value_template: '{{ "%0.02d" | format(int, states("input_slider.min_slider") | int) }}' 
         #value_template: '46'
 
@@ -194,10 +248,6 @@ group:
     view: yes
     entities:
       - group.date_time_clock
-      #- group.autodev1
-      #- group.autodev2
-      #- group.autodev3
-      #- group.autodev4
       - group.light_tab
       - sun.sun
 
@@ -222,47 +272,74 @@ group:
 
   autodev1:
     control: hidden
-    name: Light Automation
+    name: "Outlet 1"
     entities:
-      - sensor.set_time1
-      - input_slider.hour_slider1
-      - input_slider.min_slider1
-      - input_boolean.autodev1
       - script.light1_on
       - script.light1_off
+      - input_boolean.autodev1
+      - sensor.set_on_time1
+      - input_slider.on_hour_slider1
+      - input_slider.on_min_slider1
+      - sensor.set_off_time1
+      - input_slider.off_hour_slider1
+      - input_slider.off_min_slider1
 
   autodev2:
     control: hidden
-    name: Light Automation
+    name: "Outlet 2"
     entities:
-      - sensor.set_time2
-      - input_slider.hour_slider2
-      - input_slider.min_slider2
-      - input_boolean.autodev2
       - script.light2_on
       - script.light2_off
+      - input_boolean.autodev2
+      - sensor.set_on_time2
+      - input_slider.on_hour_slider2
+      - input_slider.on_min_slider2
+      - sensor.set_off_time2
+      - input_slider.off_hour_slider2
+      - input_slider.off_min_slider2
+    #control: hidden
+    #name: Light Automation
+    #entities:
+    #  - sensor.set_time2
+    #  - input_slider.hour_slider2
+    #  - input_slider.min_slider2
+    #  - input_boolean.autodev2
+    #  - script.light2_on
+    #  - script.light2_off
 
   autodev3:
     control: hidden
-    name: Light Automation
+    name: "Outlet 3"
     entities:
-      - sensor.set_time3
-      - input_slider.hour_slider3
-      - input_slider.min_slider3
-      - input_boolean.autodev3
       - script.light3_on
       - script.light3_off
+      - input_boolean.autodev3
+      - sensor.set_on_time3
+      - input_slider.on_hour_slider3
+      - input_slider.on_min_slider3
+      - sensor.set_off_time3
+      - input_slider.off_hour_slider3
+      - input_slider.off_min_slider3
+    #control: hidden
+    #name: Light Automation
+    #entities:
+    #  - sensor.set_time3
+    #  - input_slider.hour_slider3
+    #  - input_slider.min_slider3
+    #  - input_boolean.autodev3
+    #  - script.light3_on
+    #  - script.light3_off
 
-  autodev4:
-    control: hidden
-    name: Light Automation
-    entities:
-      - sensor.set_time4
-      - input_slider.hour_slider4
-      - input_slider.min_slider4
-      - input_boolean.autodev4
-      - script.light4_on
-      - script.light4_off
+  #autodev4:
+  #  control: hidden
+  #  name: Light Automation
+  #  entities:
+  #    - sensor.set_time4
+  #    - input_slider.hour_slider4
+  #    - input_slider.min_slider4
+  #    - input_boolean.autodev4
+  #    - script.light4_on
+  #    - script.light4_off
 
   light_tab:
     view: yes
@@ -272,7 +349,7 @@ group:
      - group.autodev1
      - group.autodev2
      - group.autodev3
-     - group.autodev4
+    # - group.autodev4
 
 #********************************
 #         AUTOMATION            #
